@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>邮箱验证码</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 600px;
+            margin: 40px auto;
+            background-color: #ffffff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            background: linear-gradient(135deg, #0a2540 0%, #1a3a5a 100%);
+            padding: 40px 30px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            color: #ffffff;
+            font-size: 24px;
+            font-weight: 600;
+        }
+        .content {
+            padding: 40px 30px;
+        }
+        .greeting {
+            font-size: 16px;
+            color: #333333;
+            margin-bottom: 20px;
+        }
+        .message {
+            font-size: 14px;
+            color: #666666;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+        .code-container {
+            background-color: #f8f9fa;
+            border: 2px dashed #00a4e4;
+            border-radius: 8px;
+            padding: 30px;
+            text-align: center;
+            margin: 30px 0;
+        }
+        .code {
+            font-size: 36px;
+            font-weight: bold;
+            color: #0a2540;
+            letter-spacing: 8px;
+            font-family: 'Courier New', monospace;
+        }
+        .code-label {
+            font-size: 12px;
+            color: #999999;
+            margin-top: 10px;
+        }
+        .expiry {
+            background-color: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+            font-size: 14px;
+            color: #856404;
+        }
+        .footer {
+            background-color: #f8f9fa;
+            padding: 30px;
+            text-align: center;
+            border-top: 1px solid #e9ecef;
+        }
+        .footer p {
+            margin: 5px 0;
+            font-size: 12px;
+            color: #999999;
+        }
+        .footer a {
+            color: #00a4e4;
+            text-decoration: none;
+        }
+        .security-tips {
+            background-color: #e7f3ff;
+            border-left: 4px solid #00a4e4;
+            padding: 15px;
+            margin: 20px 0;
+            font-size: 13px;
+            color: #004085;
+        }
+        .security-tips strong {
+            display: block;
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🔐 邮箱验证码</h1>
+        </div>
+        
+        <div class="content">
+            <div class="greeting">
+                您好，
+            </div>
+            
+            <div class="message">
+                感谢您注册我们的服务！为了确保您的账户安全，请使用以下验证码完成注册：
+            </div>
+            
+            <div class="code-container">
+                <div class="code">{{ code }}</div>
+                <div class="code-label">验证码</div>
+            </div>
+            
+            <div class="expiry">
+                ⏰ <strong>重要提示：</strong>此验证码将在 <strong>{{ expiry_minutes }} 分钟</strong>后失效，请尽快使用。
+            </div>
+            
+            <div class="security-tips">
+                <strong>🛡️ 安全提示：</strong>
+                <ul style="margin: 0; padding-left: 20px;">
+                    <li>请勿将验证码透露给任何人</li>
+                    <li>我们的工作人员不会向您索要验证码</li>
+                    <li>如果您没有请求此验证码，请忽略此邮件</li>
+                </ul>
+            </div>
+            
+            <div class="message">
+                如有任何问题，请随时联系我们的客服团队。
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>此邮件由系统自动发送，请勿直接回复</p>
+            <p>© 2025 Your Company. All rights reserved.</p>
+            <p><a href="{{ website_url }}">访问我们的网站</a></p>
+        </div>
+    </div>
+</body>
+</html>
+

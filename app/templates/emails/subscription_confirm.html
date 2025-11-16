@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>确认订阅</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 600px;
+            margin: 40px auto;
+            background-color: #ffffff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            background: linear-gradient(135deg, #00a4e4 0%, #0077b6 100%);
+            padding: 40px 30px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            color: #ffffff;
+            font-size: 24px;
+            font-weight: 600;
+        }
+        .content {
+            padding: 40px 30px;
+        }
+        .greeting {
+            font-size: 16px;
+            color: #333333;
+            margin-bottom: 20px;
+        }
+        .message {
+            font-size: 14px;
+            color: #666666;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+        .button-container {
+            text-align: center;
+            margin: 40px 0;
+        }
+        .confirm-button {
+            display: inline-block;
+            padding: 16px 40px;
+            background: linear-gradient(135deg, #00a4e4 0%, #0077b6 100%);
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            box-shadow: 0 4px 12px rgba(0, 164, 228, 0.3);
+            transition: transform 0.2s;
+        }
+        .confirm-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0, 164, 228, 0.4);
+        }
+        .subscription-details {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 30px 0;
+        }
+        .subscription-details h3 {
+            margin: 0 0 15px 0;
+            color: #0a2540;
+            font-size: 16px;
+        }
+        .detail-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #e9ecef;
+        }
+        .detail-item:last-child {
+            border-bottom: none;
+        }
+        .detail-label {
+            color: #666666;
+            font-size: 14px;
+        }
+        .detail-value {
+            color: #333333;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        .footer {
+            background-color: #f8f9fa;
+            padding: 30px;
+            text-align: center;
+            border-top: 1px solid #e9ecef;
+        }
+        .footer p {
+            margin: 5px 0;
+            font-size: 12px;
+            color: #999999;
+        }
+        .footer a {
+            color: #00a4e4;
+            text-decoration: none;
+        }
+        .alternative-link {
+            background-color: #e7f3ff;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+            font-size: 12px;
+            color: #004085;
+            word-break: break-all;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📬 确认您的订阅</h1>
+        </div>
+        
+        <div class="content">
+            <div class="greeting">
+                您好，
+            </div>
+            
+            <div class="message">
+                感谢您订阅我们的服务！为了确保您能够收到我们的最新资讯，请点击下方按钮确认您的订阅：
+            </div>
+            
+            <div class="subscription-details">
+                <h3>📋 订阅详情</h3>
+                <div class="detail-item">
+                    <span class="detail-label">邮箱地址</span>
+                    <span class="detail-value">{{ email }}</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">订阅类型</span>
+                    <span class="detail-value">{{ subscription_type }}</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">推送频率</span>
+                    <span class="detail-value">{{ frequency }}</span>
+                </div>
+            </div>
+            
+            <div class="button-container">
+                <a href="{{ confirm_url }}" class="confirm-button">
+                    ✓ 确认订阅
+                </a>
+            </div>
+            
+            <div class="alternative-link">
+                如果按钮无法点击，请复制以下链接到浏览器地址栏：<br>
+                <strong>{{ confirm_url }}</strong>
+            </div>
+            
+            <div class="message">
+                确认后，您将开始接收我们精心准备的内容。如果您没有订阅此服务，请忽略此邮件。
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>此邮件由系统自动发送，请勿直接回复</p>
+            <p>© 2025 Your Company. All rights reserved.</p>
+            <p><a href="{{ website_url }}">访问我们的网站</a> | <a href="{{ unsubscribe_url }}">取消订阅</a></p>
+        </div>
+    </div>
+</body>
+</html>
+

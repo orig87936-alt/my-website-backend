@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>欢迎订阅</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 600px;
+            margin: 40px auto;
+            background-color: #ffffff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            padding: 40px 30px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            color: #ffffff;
+            font-size: 24px;
+            font-weight: 600;
+        }
+        .header .icon {
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+        .content {
+            padding: 40px 30px;
+        }
+        .greeting {
+            font-size: 18px;
+            color: #333333;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        .message {
+            font-size: 14px;
+            color: #666666;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+        .features {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 30px;
+            margin: 30px 0;
+        }
+        .features h3 {
+            margin: 0 0 20px 0;
+            color: #0a2540;
+            font-size: 16px;
+        }
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+        .feature-item:last-child {
+            margin-bottom: 0;
+        }
+        .feature-icon {
+            font-size: 20px;
+            margin-right: 12px;
+            flex-shrink: 0;
+        }
+        .feature-text {
+            font-size: 14px;
+            color: #666666;
+            line-height: 1.5;
+        }
+        .cta-section {
+            text-align: center;
+            margin: 40px 0;
+            padding: 30px;
+            background: linear-gradient(135deg, #e7f3ff 0%, #f0f8ff 100%);
+            border-radius: 8px;
+        }
+        .cta-button {
+            display: inline-block;
+            padding: 16px 40px;
+            background: linear-gradient(135deg, #00a4e4 0%, #0077b6 100%);
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            box-shadow: 0 4px 12px rgba(0, 164, 228, 0.3);
+            margin-top: 15px;
+        }
+        .footer {
+            background-color: #f8f9fa;
+            padding: 30px;
+            text-align: center;
+            border-top: 1px solid #e9ecef;
+        }
+        .footer p {
+            margin: 5px 0;
+            font-size: 12px;
+            color: #999999;
+        }
+        .footer a {
+            color: #00a4e4;
+            text-decoration: none;
+        }
+        .social-links {
+            margin: 20px 0;
+        }
+        .social-links a {
+            display: inline-block;
+            margin: 0 10px;
+            color: #666666;
+            text-decoration: none;
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="icon">🎉</div>
+            <h1>欢迎加入我们！</h1>
+        </div>
+        
+        <div class="content">
+            <div class="greeting">
+                您好，{{ email }}！
+            </div>
+            
+            <div class="message">
+                感谢您订阅我们的服务！我们很高兴您成为我们社区的一员。从现在开始，您将定期收到我们精心准备的内容。
+            </div>
+            
+            <div class="features">
+                <h3>✨ 您将获得：</h3>
+                <div class="feature-item">
+                    <div class="feature-icon">📰</div>
+                    <div class="feature-text">
+                        <strong>最新资讯</strong> - 第一时间了解行业动态和重要新闻
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">💡</div>
+                    <div class="feature-text">
+                        <strong>深度分析</strong> - 专业团队为您解读市场趋势
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🎯</div>
+                    <div class="feature-text">
+                        <strong>独家内容</strong> - 订阅用户专享的精选文章
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">⚡</div>
+                    <div class="feature-text">
+                        <strong>{{ frequency }}</strong> - 根据您的偏好定期推送
+                    </div>
+                </div>
+            </div>
+            
+            <div class="cta-section">
+                <p style="margin: 0 0 10px 0; color: #666666; font-size: 14px;">
+                    立即探索我们的网站，发现更多精彩内容
+                </p>
+                <a href="{{ website_url }}" class="cta-button">
+                    🚀 开始探索
+                </a>
+            </div>
+            
+            <div class="message">
+                如果您有任何问题或建议，欢迎随时联系我们。我们期待与您保持联系！
+            </div>
+        </div>
+        
+        <div class="footer">
+            <div class="social-links">
+                <a href="{{ social_twitter }}" title="Twitter">🐦</a>
+                <a href="{{ social_linkedin }}" title="LinkedIn">💼</a>
+                <a href="{{ social_facebook }}" title="Facebook">📘</a>
+            </div>
+            <p>此邮件由系统自动发送，请勿直接回复</p>
+            <p>© 2025 Your Company. All rights reserved.</p>
+            <p><a href="{{ website_url }}">访问我们的网站</a> | <a href="{{ unsubscribe_url }}">取消订阅</a></p>
+        </div>
+    </div>
+</body>
+</html>
+
