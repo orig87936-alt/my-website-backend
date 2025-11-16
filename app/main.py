@@ -126,45 +126,57 @@ async def add_security_headers(request: Request, call_next):
     """
     response = await call_next(request)
 
-    # Prevent clickjacking attacks
-    response.headers["X-Frame-Options"] = "DENY"
+    # Special CSP for API docs to allow Swagger UI to work
+    if request.url.path.startswith("/api/docs") or request.url.path.startswith("/api/redoc") or request.url.path.startswith("/api/openapi.json"):
+        # Relaxed CSP for Swagger UI - allow CDN resources
+        response.headers["Content-Security-Policy"] = (
+            "default-src 'self'; "
+            "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.jsdelivr.net; "
+            "style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; "
+            "img-src 'self' data: https:; "
+            "font-src 'self' data: https://cdn.jsdelivr.net; "
+            "connect-src 'self';"
+        )
+    else:
+        # Prevent clickjacking attacks
+        response.headers["X-Frame-Options"] = "DENY"
 
-    # Prevent MIME type sniffing
-    response.headers["X-Content-Type-Options"] = "nosniff"
+        # Prevent MIME type sniffing
+        response.headers["X-Content-Type-Options"] = "nosniff"
 
-    # Enable XSS protection in older browsers
-    response.headers["X-XSS-Protection"] = "1; mode=block"
+        # Enable XSS protection in older browsers
+        response.headers["X-XSS-Protection"] = "1; mode=block"
 
-    # Enforce HTTPS in production (when deployed with HTTPS)
-    if settings.ENVIRONMENT == "production":
-        response.headers["Strict-Transport-Security"] = "max-age=31536000; includeSubDomains"
+        # Enforce HTTPS in production (when deployed with HTTPS)
+        if settings.ENVIRONMENT == "production":
+            response.headers["Strict-Transport-Security"] = "max-age=31536000; includeSubDomains"
 
-    # Content Security Policy (CSP)
-    # Note: Adjust this based on your frontend requirements
-    response.headers["Content-Security-Policy"] = (
-        "default-src 'self'; "
-        "script-src 'self' 'unsafe-inline' 'unsafe-eval'; "
-        "style-src 'self' 'unsafe-inline'; "
-        "img-src 'self' data: https:; "
-        "font-src 'self' data:; "
-        "connect-src 'self' https://accounts.google.com; "
-        "frame-ancestors 'none';"
-    )
+        # Content Security Policy (CSP)
+        # Note: Adjust this based on your frontend requirements
+        response.headers["Content-Security-Policy"] = (
+            "default-src 'self'; "
+            "script-src 'self' 'unsafe-inline' 'unsafe-eval'; "
+            "style-src 'self' 'unsafe-inline'; "
+            "img-src 'self' data: https:; "
+            "font-src 'self' data:; "
+            "connect-src 'self' https://accounts.google.com; "
+            "frame-ancestors 'none';"
+        )
 
-    # Referrer Policy
-    response.headers["Referrer-Policy"] = "strict-origin-when-cross-origin"
+        # Referrer Policy
+        response.headers["Referrer-Policy"] = "strict-origin-when-cross-origin"
 
-    # Permissions Policy (formerly Feature Policy)
-    response.headers["Permissions-Policy"] = (
-        "geolocation=(), "
-        "microphone=(), "
-        "camera=(), "
-        "payment=(), "
-        "usb=(), "
-        "magnetometer=(), "
-        "gyroscope=(), "
-        "accelerometer=()"
-    )
+        # Permissions Policy (formerly Feature Policy)
+        response.headers["Permissions-Policy"] = (
+            "geolocation=(), "
+            "microphone=(), "
+            "camera=(), "
+            "payment=(), "
+            "usb=(), "
+            "magnetometer=(), "
+            "gyroscope=(), "
+            "accelerometer=()"
+        )
 
     return response
 
